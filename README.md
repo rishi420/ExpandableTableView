@@ -5,6 +5,8 @@
 
 This subclass of UITableView makes the Headers to expand or collapse. 
 
+<p align="center"><img src="https://cloud.githubusercontent.com/assets/2233857/14490099/96089bd6-0192-11e6-8427-966ce2605f84.gif"/></p>
+
 ## Setup
 
 Simply drag and drop the "ExpandableTableView" directory in your project. This directory has 4 files.
