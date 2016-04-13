@@ -13,8 +13,8 @@
 		BC4EA7281CBD710E00026D99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC4EA7261CBD710E00026D99 /* Main.storyboard */; };
 		BC4EA72A1CBD710E00026D99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC4EA7291CBD710E00026D99 /* Assets.xcassets */; };
 		BC4EA72D1CBD710E00026D99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC4EA72B1CBD710E00026D99 /* LaunchScreen.storyboard */; };
-		BC4EA7361CBD80E000026D99 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC4EA7351CBD80E000026D99 /* HeaderView.m */; };
-		BC5C4ED61CBE03E7006E9DBA /* ExpandableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5C4ED51CBE03E7006E9DBA /* ExpandableTableView.m */; };
+		BC5C4EDC1CBE4620006E9DBA /* ExpandableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5C4ED91CBE4620006E9DBA /* ExpandableTableView.m */; };
+		BC5C4EDD1CBE4620006E9DBA /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5C4EDB1CBE4620006E9DBA /* HeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +28,10 @@
 		BC4EA7291CBD710E00026D99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC4EA72C1CBD710E00026D99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC4EA72E1CBD710E00026D99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC4EA7341CBD80E000026D99 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
-		BC4EA7351CBD80E000026D99 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
-		BC5C4ED41CBE03E7006E9DBA /* ExpandableTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandableTableView.h; sourceTree = "<group>"; };
-		BC5C4ED51CBE03E7006E9DBA /* ExpandableTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandableTableView.m; sourceTree = "<group>"; };
+		BC5C4ED81CBE4620006E9DBA /* ExpandableTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandableTableView.h; sourceTree = "<group>"; };
+		BC5C4ED91CBE4620006E9DBA /* ExpandableTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandableTableView.m; sourceTree = "<group>"; };
+		BC5C4EDA1CBE4620006E9DBA /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
+		BC5C4EDB1CBE4620006E9DBA /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +64,7 @@
 		BC4EA71C1CBD710E00026D99 /* ExpandableTableView */ = {
 			isa = PBXGroup;
 			children = (
+				BC5C4ED71CBE4620006E9DBA /* ExpandableTableView */,
 				BC4EA7201CBD710E00026D99 /* AppDelegate.h */,
 				BC4EA7211CBD710E00026D99 /* AppDelegate.m */,
 				BC4EA7231CBD710E00026D99 /* ViewController.h */,
@@ -73,10 +74,6 @@
 				BC4EA72B1CBD710E00026D99 /* LaunchScreen.storyboard */,
 				BC4EA72E1CBD710E00026D99 /* Info.plist */,
 				BC4EA71D1CBD710E00026D99 /* Supporting Files */,
-				BC4EA7341CBD80E000026D99 /* HeaderView.h */,
-				BC4EA7351CBD80E000026D99 /* HeaderView.m */,
-				BC5C4ED41CBE03E7006E9DBA /* ExpandableTableView.h */,
-				BC5C4ED51CBE03E7006E9DBA /* ExpandableTableView.m */,
 			);
 			path = ExpandableTableView;
 			sourceTree = "<group>";
@@ -87,6 +84,17 @@
 				BC4EA71E1CBD710E00026D99 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BC5C4ED71CBE4620006E9DBA /* ExpandableTableView */ = {
+			isa = PBXGroup;
+			children = (
+				BC5C4ED81CBE4620006E9DBA /* ExpandableTableView.h */,
+				BC5C4ED91CBE4620006E9DBA /* ExpandableTableView.m */,
+				BC5C4EDA1CBE4620006E9DBA /* HeaderView.h */,
+				BC5C4EDB1CBE4620006E9DBA /* HeaderView.m */,
+			);
+			path = ExpandableTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,10 +168,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC4EA7251CBD710E00026D99 /* ViewController.m in Sources */,
+				BC5C4EDD1CBE4620006E9DBA /* HeaderView.m in Sources */,
 				BC4EA7221CBD710E00026D99 /* AppDelegate.m in Sources */,
-				BC5C4ED61CBE03E7006E9DBA /* ExpandableTableView.m in Sources */,
 				BC4EA71F1CBD710E00026D99 /* main.m in Sources */,
-				BC4EA7361CBD80E000026D99 /* HeaderView.m in Sources */,
+				BC5C4EDC1CBE4620006E9DBA /* ExpandableTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
