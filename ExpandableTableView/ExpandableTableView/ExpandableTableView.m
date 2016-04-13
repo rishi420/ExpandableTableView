@@ -53,7 +53,7 @@
         return ((NSNumber *)self.sectionStatusDic[key]).boolValue;
     }
     
-    return (self.initiallyExpandedSection == section) ? NO : self.allHeadersInitiallyCollapled;
+    return (self.initiallyExpandedSection == section) ? NO : self.allHeadersInitiallyCollapsed;
 }
 
 - (NSInteger)totalNumberOfRows:(NSInteger)total inSection:(NSInteger)section; {

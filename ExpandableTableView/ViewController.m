@@ -26,7 +26,7 @@
     self.cells = @[@"Cell 1", @"Cell 2", @"Cell 3", @"Cell 4", @"Cell 5", @"Cell 6", @"Cell 7", @"Cell 8"];
     self.headers = @[@"Header 1", @"Header 2", @"Header 3", @"Header 4", @"Header 5", @"Header 6", @"Header 7", @"Header 8", @"Header 9", @"Header 10", @"Header 11", @"Header 12", @"Header 13", @"Header 14"];
     
-    self.tableView.allHeadersInitiallyCollapled = YES;
+    self.tableView.allHeadersInitiallyCollapsed = YES;
     self.tableView.initiallyExpandedSection = 0;
 }
 
