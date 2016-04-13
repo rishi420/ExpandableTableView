@@ -19,10 +19,10 @@
 @interface HeaderView : UITableViewHeaderFooterView
 
 @property (nonatomic, assign) id<HeaderViewDelegate> delegate;
-@property (nonatomic, readonly) BOOL isCollapsed;
 @property (nonatomic, readonly) NSInteger section;
+@property (nonatomic, readonly) NSInteger totalRows;
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier andFrame:(CGRect)frame;
-- (void)updateWithTitle:(NSString *)title andSection:(NSInteger)section;
+- (void)updateWithTitle:(NSString *)title isCollapsed:(BOOL)isCollapsed totalRows:(NSInteger)row andSection:(NSInteger)section;
 
 @end

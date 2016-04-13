@@ -7,11 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "HeaderView.h"
+#import "ExpandableTableView.h"
 
-@interface ViewController () <HeaderViewDelegate>
+@interface ViewController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet ExpandableTableView *tableView;
 
 @property (nonatomic, strong) NSArray *cells;
 @property (nonatomic, strong) NSArray *headers;
@@ -23,10 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.cells = @[@"Cell 1", @"Cell 2"];
-    self.headers = @[@"Header 1", @"Header 2"];
+    self.cells = @[@"Cell 1", @"Cell 2", @"Cell 3", @"Cell 4", @"Cell 5", @"Cell 6", @"Cell 7", @"Cell 8"];
+    self.headers = @[@"Header 1", @"Header 2", @"Header 3", @"Header 4", @"Header 5", @"Header 6", @"Header 7", @"Header 8", @"Header 9", @"Header 10", @"Header 11", @"Header 12", @"Header 13", @"Header 14"];
     
-    [self.tableView registerClass:[HeaderView class] forHeaderFooterViewReuseIdentifier:@"Header"];
+    self.tableView.allHeadersInitiallyCollapled = YES;
+    self.tableView.initiallyExpandedSection = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,12 +38,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    //HeaderView *headerView = (HeaderView *)[tableView headerViewForSection:section];
-    HeaderView *headerView = (HeaderView *)[self tableView:tableView viewForHeaderInSection:section];
-    
-    NSLog(@"headerView = %@, section = %ld", headerView, (long)section);
-    
-    return (headerView.isCollapsed) ? 0 : self.cells.count;
+    return [self.tableView totalNumberOfRows:self.cells.count inSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -61,42 +57,11 @@
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    HeaderView *headerView  = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"header"];
-    
-    if (!headerView) {
-        CGRect frame = CGRectMake(0, 0, CGRectGetWidth(tableView.frame), 28);
-        headerView = [[HeaderView alloc] initWithReuseIdentifier:@"header" andFrame:frame];
-        headerView.delegate = self;
-    }
-    
-    [headerView updateWithTitle:self.headers[section] andSection:section];
-    
-    return headerView;
+    return [self.tableView headerWithTitle:self.headers[section] totalRows:self.cells.count inSection:section];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-}
-
-#pragma mark - HeaderViewDelegate
-
-- (void)didTapHeader:(HeaderView *)headerView {
-    
-    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i < self.cells.count; i++) {
-        [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:headerView.section]];
-    }
-    
-    [self.tableView beginUpdates];
-
-    if (headerView.isCollapsed) {
-        [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
-    } else {
-        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationBottom];
-    }
-    
-    [self.tableView endUpdates];
+    NSLog(@"section-%ld, row-%ld", (long)indexPath.section, (long)indexPath.row);
 }
 
 @end

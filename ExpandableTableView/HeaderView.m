@@ -10,10 +10,11 @@
 
 @interface HeaderView ()
 
-@property (nonatomic, assign) BOOL isCollapsed;
 @property (nonatomic, assign) NSInteger section;
+@property (nonatomic, assign) NSInteger totalRows;
 @property (nonatomic, strong) UIButton *headerButton;
 @property (nonatomic, strong) NSString *title;
+@property (nonatomic, assign) BOOL isCollapsed;
 
 @end
 
@@ -25,31 +26,21 @@
         
         self.frame = frame;
         
-        _headerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.headerButton.frame = self.bounds;
-        self.headerButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [self.headerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [self.headerButton addTarget:self action:@selector(headerButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.contentView addSubview:self.headerButton];
-        
-        self.isCollapsed = YES;
+        [self addHeaderButton];
     }
 
     return self;
 }
 
-- (void)setHeaderText {
+- (void)addHeaderButton {
     
-    NSString *plusOrMinus = (self.isCollapsed) ? @" + " : @" - ";
-    [self.headerButton setTitle:[plusOrMinus stringByAppendingString:self.title] forState:UIControlStateNormal];
-}
-
-- (void)updateWithTitle:(NSString *)title andSection:(NSInteger)section {
+    _headerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.headerButton.frame = self.bounds;
+    self.headerButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [self.headerButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.headerButton addTarget:self action:@selector(headerButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.section = section;
-    self.title = title;
-    [self setHeaderText];
+    [self.contentView addSubview:self.headerButton];
 }
 
 - (void)headerButtonAction:(UIButton *)headerButton {
@@ -60,6 +51,22 @@
     if ([self.delegate respondsToSelector:@selector(didTapHeader:)]) {
         [self.delegate didTapHeader:self];
     }
+}
+
+- (void)updateWithTitle:(NSString *)title isCollapsed:(BOOL)isCollapsed totalRows:(NSInteger)row andSection:(NSInteger)section {
+    
+    self.title = title;
+    self.isCollapsed = isCollapsed;
+    self.section = section;
+    self.totalRows = row;
+    
+    [self setHeaderText];
+}
+
+- (void)setHeaderText {
+    
+    NSString *plusOrMinus = (self.isCollapsed) ? @" +\t" : @" -\t";
+    [self.headerButton setTitle:[plusOrMinus stringByAppendingString:self.title] forState:UIControlStateNormal];
 }
 
 @end
