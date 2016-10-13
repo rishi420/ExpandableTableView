@@ -55,8 +55,11 @@
 
 #pragma mark - UITableViewDelegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return HEADER_VIEW_HEIGHT;
+}
+
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
     return [self.tableView headerWithTitle:self.headers[section] totalRows:self.cells.count inSection:section];
 }
 

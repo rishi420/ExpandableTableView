@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define HEADER_VIEW_HEIGHT 28
+
 @interface ExpandableTableView : UITableView
 
 @property (nonatomic, assign) BOOL allHeadersInitiallyCollapsed;

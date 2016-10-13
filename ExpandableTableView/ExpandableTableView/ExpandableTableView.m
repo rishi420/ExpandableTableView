@@ -37,7 +37,7 @@
     HeaderView *headerView  = [self dequeueReusableHeaderFooterViewWithIdentifier:@"Header"];
     
     if (!headerView) {
-        CGRect frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), 28);
+        CGRect frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), HEADER_VIEW_HEIGHT);
         headerView = [[HeaderView alloc] initWithReuseIdentifier:@"Header" andFrame:frame];
         headerView.delegate = self;
     }
