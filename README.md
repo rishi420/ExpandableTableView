@@ -9,8 +9,8 @@ This subclass of UITableView makes the Headers to expand or collapse.
 
 ## Setup
 
-Uses Xcode 8
-for Xcode 7.2 download older release from https://github.com/rishi420/ExpandableTableView/releases
+Latest code uses Xcode 8 <br>
+For Xcode 7.2 download older release from https://github.com/rishi420/ExpandableTableView/releases
 
 Simply drag and drop the "ExpandableTableView" directory in your project. This directory has 4 files.
 
