@@ -30,4 +30,5 @@ Simply drag and drop the "ExpandableTableView" directory in your project. This d
 ## Features
 - To make all Headers start with collapsed state use `allHeadersInitiallyCollapsed`
 - To make all Headers start with collapsed state execpt one section use `initiallyExpandedSection`
+- To expand only one section at a time use `singleSelectionEnable`
 
