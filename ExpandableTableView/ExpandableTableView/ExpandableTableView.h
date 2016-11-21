@@ -14,6 +14,7 @@
 
 @property (nonatomic, assign) BOOL allHeadersInitiallyCollapsed;
 @property (nonatomic, assign) int initiallyExpandedSection;
+@property (nonatomic, assign) BOOL singleSelectionEnable;
 
 - (NSInteger)totalNumberOfRows:(NSInteger)total inSection:(NSInteger)section;
 - (UIView *)headerWithTitle:(NSString *)title totalRows:(NSInteger)row inSection:(NSInteger)section;

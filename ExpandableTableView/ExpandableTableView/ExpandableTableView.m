@@ -12,6 +12,7 @@
 @interface ExpandableTableView () <HeaderViewDelegate>
 
 @property (nonatomic, strong) NSMutableDictionary *sectionStatusDic;
+@property (nonatomic, strong) HeaderView *prevHeaderView;
 
 @end
 
@@ -45,6 +46,17 @@
     return headerView;
 }
 
+- (NSArray *)indexPathsForHeaderView:(HeaderView *)headerView {
+    
+    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < headerView.totalRows; i++) {
+        [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:headerView.section]];
+    }
+    
+    return indexPaths;
+}
+
 - (BOOL)collapsedForSection:(NSInteger)section {
     
     NSString *key = [NSString stringWithFormat:@"%ld", (long)section];
@@ -68,6 +80,10 @@
     HeaderView *headerView = self.headerView;
     [headerView updateWithTitle:title isCollapsed:isCollapsed totalRows:row andSection:section];
     
+    if (!self.prevHeaderView && self.initiallyExpandedSection == section) {
+        self.prevHeaderView = headerView;
+    }
+    
     return headerView;
 }
 
@@ -80,14 +96,21 @@
     isCollapsed = !isCollapsed;
     
     [self.sectionStatusDic setObject:@(isCollapsed) forKey:key];
-    
-    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i < headerView.totalRows; i++) {
-        [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:headerView.section]];
+
+    [self beginUpdates];
+
+    if (self.singleSelectionEnable && self.prevHeaderView != headerView && ![self collapsedForSection:self.prevHeaderView.section]) {
+        
+        NSArray *indexPaths = [self indexPathsForHeaderView:self.prevHeaderView];
+        [self deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+        
+        NSString *key = [NSString stringWithFormat:@"%ld", (long)self.prevHeaderView.section];
+        [self.sectionStatusDic setObject:@(YES) forKey:key];
+        
+        [self.prevHeaderView updateWithTitle:self.prevHeaderView.title isCollapsed:YES totalRows:self.prevHeaderView.totalRows andSection:self.prevHeaderView.section];
     }
     
-    [self beginUpdates];
+    NSArray *indexPaths = [self indexPathsForHeaderView:headerView];
     
     if (isCollapsed) {
         [self deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
@@ -96,6 +119,8 @@
     }
     
     [self endUpdates];
+    
+    self.prevHeaderView = headerView;
 }
 
 @end

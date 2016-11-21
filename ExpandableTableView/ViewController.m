@@ -28,6 +28,7 @@
     
     self.tableView.allHeadersInitiallyCollapsed = YES;
     self.tableView.initiallyExpandedSection = 0;
+    self.tableView.singleSelectionEnable = YES;
 }
 
 - (void)didReceiveMemoryWarning {

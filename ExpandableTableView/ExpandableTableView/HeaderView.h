@@ -21,6 +21,7 @@
 @property (nonatomic, assign) id<HeaderViewDelegate> delegate;
 @property (nonatomic, readonly) NSInteger section;
 @property (nonatomic, readonly) NSInteger totalRows;
+@property (nonatomic, strong, readonly) NSString *title;
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier andFrame:(CGRect)frame;
 - (void)updateWithTitle:(NSString *)title isCollapsed:(BOOL)isCollapsed totalRows:(NSInteger)row andSection:(NSInteger)section;
