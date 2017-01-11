@@ -20,10 +20,37 @@
 
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    if (self) {
+    if (self = [super initWithCoder:coder]) {
         [self setup];
     }
+ 
+    return self;
+}
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+        [self setup];
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self setup];
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
+{
+    if (self = [super initWithFrame:frame style:style]) {
+        [self setup];
+    }
+    
     return self;
 }
 
