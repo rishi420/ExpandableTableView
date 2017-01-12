@@ -12,9 +12,7 @@
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet ExpandableTableView *tableView;
-
-@property (nonatomic, strong) NSArray *cells;
-@property (nonatomic, strong) NSArray *headers;
+@property (nonatomic, strong) NSArray *headersAndCells;
 
 @end
 
@@ -23,8 +21,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.cells = @[@"Cell 1", @"Cell 2", @"Cell 3", @"Cell 4", @"Cell 5", @"Cell 6", @"Cell 7", @"Cell 8"];
-    self.headers = @[@"Header 1", @"Header 2", @"Header 3", @"Header 4", @"Header 5", @"Header 6", @"Header 7", @"Header 8", @"Header 9", @"Header 10", @"Header 11", @"Header 12", @"Header 13", @"Header 14"];
+    self.headersAndCells = @[@{@"Header 1": @[@"Cell 1", @"Cell 2", @"Cell 3"]},
+                     @{@"Header 2": @[@"Cell 1", @"Cell 2"]},
+                     @{@"Header 3": @[@"Cell 1", @"Cell 2", @"Cell 3", @"Cell 4", @"Cell 5"]},
+                     @{@"Header 4": @[]},
+                     @{@"Header 5": @[@"Cell 1", @"Cell 2", @"Cell 3", @"Cell 4", @"Cell 5", @"Cell 6", @"Cell 7", @"Cell 8"]},
+                     @{@"Header 6": @[@"Cell 1", @"Cell 2", @"Cell 3", @"Cell 4", @"Cell 5", @"Cell 6", @"Cell 7", @"Cell 8"]},
+                     @{@"Header 7": @[@"Cell 1", @"Cell 2", @"Cell 3", @"Cell 4", @"Cell 5", @"Cell 6", @"Cell 7", @"Cell 8"]},
+                     @{@"Header 8": @[@"Cell 1", @"Cell 2", @"Cell 3"]},
+                     @{@"Header 9": @[@"Cell 1", @"Cell 2", @"Cell 3"]},
+                     @{@"Header 10": @[@"Cell 1", @"Cell 2", @"Cell 3"]},
+                     @{@"Header 11": @[@"Cell 1", @"Cell 2", @"Cell 3"]}];
     
     self.tableView.allHeadersInitiallyCollapsed = YES;
     self.tableView.initiallyExpandedSection = 0;
@@ -35,23 +42,31 @@
     [super didReceiveMemoryWarning];
 }
 
+- (NSArray *)cellsForSection:(NSInteger)section {
+    NSDictionary *dic = self.headersAndCells[section];
+    return dic.allValues.firstObject;
+}
+
+- (NSString *)sectionTextForSection:(NSInteger)section {
+    NSDictionary *dic = self.headersAndCells[section];
+    return dic.allKeys.firstObject;
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return [self.tableView totalNumberOfRows:self.cells.count inSection:section];
+    NSArray *cells = [self cellsForSection:section];
+    return [self.tableView totalNumberOfRows:cells.count inSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    cell.textLabel.text = self.cells[indexPath.row];
+    cell.textLabel.text = [self cellsForSection:indexPath.section][indexPath.row];
     return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return self.headers.count;
+    return self.headersAndCells.count;
 }
 
 #pragma mark - UITableViewDelegate
@@ -61,7 +76,7 @@
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [self.tableView headerWithTitle:self.headers[section] totalRows:self.cells.count inSection:section];
+    return [self.tableView headerWithTitle:[self sectionTextForSection:section] totalRows:[self cellsForSection:section].count inSection:section];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
